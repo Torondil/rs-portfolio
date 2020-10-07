@@ -14,6 +14,14 @@
   max-width: 75rem;
 }
 
+.wrapper-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 75rem;
+}
+
 .header {
   position: absolute;
   top: 3.75rem;
@@ -125,12 +133,14 @@ a {
   font-size: 17px;
   line-height: 130%;
   padding: 15px 45px;
+  color: #545454;
 }
 
 /* ABOUT */
 
 .about {
   padding: 81px 249px 0;
+  margin-bottom: 100px;
 }
 
 .about__content {
@@ -155,4 +165,120 @@ a {
   color: #4C4C4C;
   margin-top: 23px;
   letter-spacing: 0.19px;
+}
+
+/* OUR-FRIENDS */
+
+.our-friends {
+  background: #F6F6F6;
+  padding-top: 78px;
+  padding-bottom: 107px;
+}
+
+.our-friends__title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  color: #545454;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.our-friends__cards-container {
+  display: flex;
+  margin-top: 60px;
+  padding-left: 90px;
+}
+
+.our-friends__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 90px;
+}
+
+.our-friends__name {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: normal;
+  letter-spacing: 0.06em;
+  color: #545454;
+  margin-top: 29px;
+}
+
+.our-friends__learn-button {
+  width: 187px;
+  height: 52px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 17px;
+  line-height: 130%;
+  font-weight: normal;
+  letter-spacing: 0.06em;
+  color: #545454;
+  margin-top: 31px;
+  border: 2px solid #F1CDB3;
+  background: #F6F6F6;
+  border-radius: 100px;
+}
+
+.our-friends__image {
+  border-radius: 9px;
+}
+
+.our-friends__button {
+  width: 261px;
+  height: 52px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 17px;
+  line-height: 130%;
+  font-weight: normal;
+  letter-spacing: 0.06em;
+  color: #545454;
+  margin-top: 90px;
+  border: 2px solid #F1CDB3;
+  background: #F1CDB3;
+  border-radius: 100px;
+}
+
+/* HELP */
+
+.help__title {
+  width: 310px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  text-align: center;
+  margin: 73px 0px -29px 2px;
+}
+
+.help__table {
+  display: flex;
+  list-style: none;
+  margin-top: 60px;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.help__items {
+  margin: 27.5px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help__item-title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  margin-top: 30px;
+  text-align: center;
 }
