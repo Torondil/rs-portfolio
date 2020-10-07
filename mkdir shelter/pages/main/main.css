@@ -172,7 +172,7 @@ a {
 .our-friends {
   background: #F6F6F6;
   padding-top: 78px;
-  padding-bottom: 107px;
+  padding-bottom: 100px;
 }
 
 .our-friends__title {
@@ -244,6 +244,10 @@ a {
 
 /* HELP */
 
+.help {
+  margin-bottom: 73px;
+}
+
 .help__title {
   width: 310px;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -253,7 +257,7 @@ a {
   letter-spacing: 0.06em;
   color: #545454;
   text-align: center;
-  margin: 73px 0px -29px 2px;
+  margin: 80px 0px -29px 2px;
 }
 
 .help__table {
@@ -281,4 +285,124 @@ a {
   color: #545454;
   margin-top: 30px;
   text-align: center;
+}
+
+/* DONATION */
+
+.donat {
+  display: flex;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background: #F6F6F6;
+  padding-top: 92px;
+  padding-bottom: 101px;
+}
+
+.donat__content {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+}
+
+.donat__title {
+  width: 300px;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  margin-top: -11px;
+  margin-bottom: 19px;
+}
+
+.donat__img {
+  margin-left: -2px;
+  margin-right: 31px;
+  height: 261px;
+}
+
+.donat__subtitle {
+  letter-spacing: 0.03em;
+}
+
+.donat__card {
+  width: 349px;
+  height: 43px;
+  background: #F1CDB3;
+  border-radius: 9px;
+  margin-top: 18px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.donat__card img {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.donat__card-number {
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 1.2px;
+}
+
+.donat__text-about {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: #B2B2B2;
+  margin-top: 20px;
+  letter-spacing: -0.15px;
+}
+
+/* FOOTER */
+
+.footer {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background: url(../../assets/images/noise_transparent.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  padding-top: 56px;
+}
+
+.footer__title {
+  width: 280px;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+}
+
+.footer__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__item {
+  display: flex;
+  margin-top: 39px;
+}
+
+.footer__item-text {
+  width: 260px;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #F1CDB3;
+  margin-left: 20px;
+  margin-top: 4px;
+}
+
+.footer__puppy {
+  margin-top: -16px;
+  margin-left: 39px;
+}
+
+.footer__adress1 {
+  margin-top: 29px;
+}
+
+.footer__adress2 {
+  margin-top: 33px;
 }
