@@ -84,6 +84,10 @@
   padding-bottom: 4px;
 }
 
+.list__link:hover {
+  color: white;
+}
+
 a {
   text-decoration: none;
 }
@@ -134,6 +138,16 @@ a {
   line-height: 130%;
   padding: 15px 45px;
   color: #545454;
+}
+
+.hero__button:hover {
+  box-shadow: 0 0 10px 0 #9bb160 inset, 0 0 10px 4px #9bb160;
+  color: #9bb160;
+}
+
+.hero__button:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
 }
 
 /* ABOUT */
@@ -223,6 +237,15 @@ a {
   border-radius: 100px;
 }
 
+.our-friends__learn-button:hover {
+  background-color: #F1CDB3;
+}
+
+.our-friends__learn-button:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
 .our-friends__image {
   border-radius: 9px;
 }
@@ -237,9 +260,19 @@ a {
   letter-spacing: 0.06em;
   color: #545454;
   margin-top: 90px;
-  border: 2px solid #F1CDB3;
+  border: none;
   background: #F1CDB3;
   border-radius: 100px;
+}
+
+.our-friends__button:hover {
+  box-shadow: 0 0 10px 0 #9bb160 inset, 0 0 10px 4px #9bb160;
+  color: #9bb160;
+}
+
+.our-friends__button:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
 }
 
 /* HELP */
