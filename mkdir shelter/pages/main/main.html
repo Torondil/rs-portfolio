@@ -44,7 +44,7 @@
       </section>
       <section class="about">
         <div class="wrapper">
-          <img src="../../assets/images/about-pets.png" alt="about-image">
+          <img src="../../assets/images/about-pets.png" alt="about-image" class="about__image">
           <div class="about__content">
             <h2 class="about__title">About the shelter “Cozy House”</h2>
             <p class="about__subtitle">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.<br><br>We feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</p>
@@ -56,6 +56,9 @@
           <h2 class="our-friends__title">Our friends who<br>
             are looking for a house</h2>
           <div class="our-friends__cards-container">
+            <button class="our-friends__slider-button">
+              <img src="../../assets/images/Arrow-left.png" alt="arrow left">
+            </button>
             <div class="our-friends__card">
               <img src="../../assets/images/pets-katrine.png" alt="pets-katrine" class="our-friends__image">
               <h3 class="our-friends__name">Katrine</h3>
@@ -71,6 +74,9 @@
               <h3 class="our-friends__name">Woody</h3>
               <button class="our-friends__learn-button">Learn more</button>
             </div>
+            <button class="our-friends__slider-button-reverted">
+              <img src="../../assets/images/Arrow-right.png" alt="arrow right">
+            </button>
           </div>
           <button class="our-friends__button" type="button">Get to know the rest</button>
         </div>
@@ -127,7 +133,7 @@
             <p class="donat__subtitle">Name of the bank / Type of bank account</p>
             <div class="donat__card">
               <img src="../../assets/images/credit-card.svg" alt="credit card">
-              <p class="donat__card-number">8380 2880 8028 8791 7435</p>
+              <a href="#" class="donat__card-number">8380 2880 8028 8791 7435</a>
             </div>
             <p class="donat__text-about">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
           </div>
@@ -138,23 +144,29 @@
           <div class="footer__content">
             <h3 class="footer__title">For questions and suggestions</h3>
             <div class="footer__item">
-              <img src="../../assets/images/icon-email.svg" alt="email" class="footer__icon">
+              <a href="mailto:email@shelter.com"><img src="../../assets/images/icon-email.svg" alt="email" class="footer__icon"></a>
               <a href="mailto:email@shelter.com" class="footer__item-text">email@shelter.com</a>
             </div>
             <div class="footer__item">
-              <img src="../../assets/images/icon-phone.svg" alt="email" class="footer__icon">
-              <p class="footer__item-text">+13 674 567 75 54</p>
+              <a href="skype:+375444681941?call">
+                <img src="../../assets/images/icon-phone.svg" alt="email" class="footer__icon">
+              </a>
+              <a href="skype:+375444681941?call" class="footer__item-text">+13 674 567 75 54</a>
             </div>
           </div>
           <div class="footer__content">
             <h3 class="footer__title">We are waiting for your visit</h3>
             <div class="footer__item  footer__adress1">
-              <img src="../../assets/images/icon-marker.svg" alt="email" class="footer__icon">
-              <p class="footer__item-text">1 Central Street, Boston (entrance from the store)</p>
+              <a href="https://www.google.ru/maps/@53.8936636,27.5463254,13z" target="blank">
+                <img src="../../assets/images/icon-marker.svg" alt="email" class="footer__icon">
+                <p class="footer__item-text">1 Central Street, Boston (entrance from the store)</p>
+              </a>
             </div>
             <div class="footer__item  footer__adress2">
-              <img src="../../assets/images/icon-marker.svg" alt="email" class="footer__icon">
-              <p class="footer__item-text">18 South Park, London</p>
+              <a href="https://www.google.ru/maps/@53.8936636,27.5463254,13z" target="blank">
+                <img src="../../assets/images/icon-marker.svg" alt="email" class="footer__icon">
+                <p class="footer__item-text">18 South Park, London</p>
+              </a>
             </div>
           </div>
           <img src="../../assets/images/footer-puppy.png" alt="footer-puppy" class="footer__puppy">

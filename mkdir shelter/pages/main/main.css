@@ -181,6 +181,10 @@ a {
   letter-spacing: 0.19px;
 }
 
+.about__image {
+  height: 408px;
+}
+
 /* OUR-FRIENDS */
 
 .our-friends {
@@ -210,6 +214,9 @@ a {
   flex-direction: column;
   align-items: center;
   margin-right: 90px;
+  background: #FAFAFA;
+  border-radius: 9px;
+  padding-bottom: 33px;
 }
 
 .our-friends__name {
@@ -233,7 +240,7 @@ a {
   color: #545454;
   margin-top: 31px;
   border: 2px solid #F1CDB3;
-  background: #F6F6F6;
+  background: #FAFAFA;
   border-radius: 100px;
 }
 
@@ -250,6 +257,11 @@ a {
   border-radius: 9px;
 }
 
+.our-friends__card :hover {
+  filter: sepia(90%);
+  cursor: pointer;
+}
+
 .our-friends__button {
   width: 261px;
   height: 52px;
@@ -259,7 +271,7 @@ a {
   font-weight: normal;
   letter-spacing: 0.06em;
   color: #545454;
-  margin-top: 90px;
+  margin-top: 57px;
   border: none;
   background: #F1CDB3;
   border-radius: 100px;
@@ -273,6 +285,43 @@ a {
 .our-friends__button:active {
   transform: translateY(1px);
   filter: saturate(150%);
+}
+
+.our-friends__slider-button {
+  width: 52px;
+  height: 52px;
+  border: 2px solid #F1CDB3;
+  box-sizing: border-box;
+  border-radius: 100px;
+  align-self: center;
+  margin-left: -90px;
+  margin-right: 53px;
+  margin-top: -6px;
+  background: #F6F6F6;
+}
+
+.our-friends__slider-button :hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 #9bb160 inset, 0 0 10px 4px #9bb160;
+  color: #9bb160;
+}
+
+.our-friends__slider-button-reverted {
+  width: 52px;
+  height: 52px;
+  border: 2px solid #F1CDB3;
+  box-sizing: border-box;
+  border-radius: 100px;
+  align-self: center;
+  margin-left: -39px;
+  margin-top: -6px;
+  background: #F6F6F6;
+}
+
+.our-friends__slider-button-reverted :hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 #9bb160 inset, 0 0 10px 4px #9bb160;
+  color: #9bb160;
 }
 
 /* HELP */
@@ -368,6 +417,12 @@ a {
   align-items: center;
 }
 
+.donat__card :hover {
+  transform: translateY(1px);
+  cursor: pointer;
+  filter: brightness(0.4);
+}
+
 .donat__card img {
   margin-left: 15px;
   margin-right: 15px;
@@ -377,6 +432,7 @@ a {
   font-size: 20px;
   line-height: 115%;
   letter-spacing: 1.2px;
+  color: #292929;
 }
 
 .donat__text-about {
@@ -415,6 +471,10 @@ a {
 .footer__item {
   display: flex;
   margin-top: 39px;
+}
+
+.footer__item a {
+  display: flex;
 }
 
 .footer__item-text {
