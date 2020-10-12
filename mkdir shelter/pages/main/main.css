@@ -25,7 +25,7 @@
 .header {
   position: absolute;
   top: 3.75rem;
-  width:100vw;
+  width: 100vw;
 }
 
 .logo {
@@ -72,7 +72,6 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.9375rem;
   line-height: 160%;
-  color: white;
 }
 
 .list__link_disabled {
@@ -82,6 +81,7 @@
 .list__link_active {
   border-bottom: solid 3px #F1CDB3;
   padding-bottom: 4px;
+  color: white;
 }
 
 .list__link:hover {
@@ -288,6 +288,9 @@ a {
 }
 
 .our-friends__slider-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 52px;
   height: 52px;
   border: 2px solid #F1CDB3;
@@ -300,13 +303,19 @@ a {
   background: #F6F6F6;
 }
 
-.our-friends__slider-button :hover {
+.our-friends__slider-button:hover {
   cursor: pointer;
-  box-shadow: 0 0 10px 0 #9bb160 inset, 0 0 10px 4px #9bb160;
-  color: #9bb160;
+  background: #F1CDB3;
+}
+
+.our-friends__slider-button:active {
+  transform: translateY(1px);
 }
 
 .our-friends__slider-button-reverted {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 52px;
   height: 52px;
   border: 2px solid #F1CDB3;
@@ -318,10 +327,13 @@ a {
   background: #F6F6F6;
 }
 
-.our-friends__slider-button-reverted :hover {
+.our-friends__slider-button-reverted:hover {
   cursor: pointer;
-  box-shadow: 0 0 10px 0 #9bb160 inset, 0 0 10px 4px #9bb160;
-  color: #9bb160;
+  background: #F1CDB3;
+}
+
+.our-friends__slider-button-reverted:active {
+  transform: translateY(1px);
 }
 
 /* HELP */
