@@ -47,7 +47,6 @@ function numberPress(number) {
 
 function operation(op) {
   let localOperationMemory = display.value;
-
   if (MemoryNewNumber && MemoryPendingOperation !== '=' && MemoryPendingOperation !== '√') {
     display.value = MemoryCurrentNumber;
   } else {
