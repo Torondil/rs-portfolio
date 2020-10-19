@@ -37,6 +37,7 @@
   display: flex;
   flex-direction: column;
   margin-left: -8px;
+  cursor: default;
 }
 
 .logo__title {
@@ -281,4 +282,75 @@ a {
 
 .footer__adress2 {
   margin-top: 33px;
+}
+
+@media (max-width: 1279px) {
+  .wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .header {
+    margin-left: 0;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+
+  .menu {
+    margin-right: 0;
+  }
+
+  .our-friends {
+    padding-bottom: 76px;
+  }
+
+  .our-friends__title {
+    margin-left: 0;
+  }
+
+  .our-friends__cards-container {
+    margin-left: 0;
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .our-friends__card {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .our-friends__card:nth-child(8), .our-friends__card:nth-child(7) {
+  display: none;
+  }
+
+  .our-friends__slider-container {
+    margin-left: 0px;
+    margin-top: 12px;
+  }
+
+  .footer > div:nth-child(1) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer {
+    padding-top: 30px;
+  }
+
+  .footer__content:nth-child(2) {
+    margin-right: 0px;
+    margin-left: 19px;
+  }
+
+  .footer__content:nth-child(1) {
+    padding-right: 0px;
+    margin-left: 0px;
+  }
+
+  .footer__puppy {
+    margin: 64px 22px 0 21px;
+  }
+
 }
