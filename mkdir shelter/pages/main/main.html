@@ -17,13 +17,30 @@
             <img src="../../assets/images/Burger.png" alt="burger" class="burger__image">
           </div>
         </div>
+        <div class="burger__container" id="burger-list">
+          <ul class="burger__list">
+            <li class="burger__list-item">
+              <a href="./main.html" class="list__link list__link_active">About the shelter</a>
+            </li>
+            <li class="burger__list-item">
+              <a href="../pets/pets.html" class="list__link list__link_disabled">Our pets</a>
+            </li>
+            <li class="burger__list-item">
+              <a href="#" class="list__link list__link_disabled">Help the shelter</a>
+            </li>
+            <li class="burger__list-item">
+              <a href="#" class="list__link list__link_disabled">Contacts</a>
+            </li>
+          </ul>
+
+        </div>
         <nav class="menu">
           <ul class="list">
             <li class="list__item">
-              <a href="#" class="list__link list__link_active">About the shelter</a>
+              <a href="./main.html" class="list__link list__link_active">About the shelter</a>
             </li>
             <li class="list__item">
-              <a href="#" class="list__link list__link_disabled">Our pets</a>
+              <a href="../pets/pets.html" class="list__link list__link_disabled">Our pets</a>
             </li>
             <li class="list__item">
               <a href="#" class="list__link list__link_disabled">Help the shelter</a>
@@ -41,7 +58,7 @@
           <div class="hero__content">
             <h1 class="hero__title">Not only people need a house</h1>
             <p class="hero__subtitle">We offer to give a chance to a little and&nbsp;nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
-            <button type="button" class="hero__button">Make a friend</button>
+            <button onclick="document.location='../pets/pets.html'" type="button" class="hero__button">Make a friend</button>
           </div>
           <img src="../../assets/images/start-screen-puppy.png" alt="hero-image" class="hero__image">
         </div>
@@ -90,7 +107,7 @@
               <img src="../../assets/images/Arrow-right.png" alt="arrow right">
             </div>
           </div>
-          <button class="our-friends__button" type="button">Get to know the rest</button>
+          <button onclick="document.location='../pets/pets.html'" class="our-friends__button" type="button">Get to know the rest</button>
         </div>
       </section>
       <section class="help">
@@ -187,5 +204,6 @@
         </div>
       </footer>
     </main>
+    <script src="./main.js"></script>
 </body>
 </html>
