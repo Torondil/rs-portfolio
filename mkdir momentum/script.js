@@ -81,29 +81,61 @@ function setFocus(e) {
   }
 }
 
-// Set Background and Greeting
-function setBgGreet() {
-  let today = new Date(),
-    hour = today.getHours();
+const baseDay = './assets/images/day',
+  baseEvening = './assets/images/evening',
+  baseMorning = './assets/images/morning',
+  baseNight = './assets/images/night';
 
-  if (hour < 12) {
-    // Morning
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-    greeting.textContent = 'Good Morning, ';
-  } else if (hour < 18) {
-    // Afternoon
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-    greeting.textContent = 'Good Afternoon, ';
-  } else {
-    // Evening
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/924T2Wv/night.jpg')";
-    greeting.textContent = 'Good Evening, ';
-    document.body.style.color = 'white';
-  }
+const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
+let i = 0;
+
+function viewBgImage(data) {
+  const body = document.querySelector('body');
+  const src = data;
+  const img = document.createElement('img');
+  img.src = src;
+  img.onload = () => {
+    body.style.backgroundImage = `url(${src})`;
+  };
 }
+
+function getImage() {
+  const index = i % images.length;
+  // let today = new Date
+  // if (12 >= hour >= 6)
+  const imageSrc = base + images[index];
+  viewBgImage(imageSrc);
+  i++;
+  btn.disabled = true;
+  setTimeout(function() { btn.disabled = false }, 1000);
+}
+
+const btn = document.querySelector('.btn');
+btn.addEventListener('click', getImage);
+
+// // Set Background and Greeting
+// function setBgGreet() {
+//   let today = new Date(),
+//     hour = today.getHours();
+
+//   if (hour < 12) {
+//     // Morning
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+//     greeting.textContent = 'Good Morning, ';
+//   } else if (hour < 18) {
+//     // Afternoon
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
+//     greeting.textContent = 'Good Afternoon, ';
+//   } else {
+//     // Evening
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/924T2Wv/night.jpg')";
+//     greeting.textContent = 'Good Evening, ';
+//     document.body.style.color = 'white';
+//   }
+// }
 
 name.addEventListener('click', deleteName);
 name.addEventListener('keypress', setName);
@@ -114,7 +146,7 @@ focus.addEventListener('blur', setFocus);
 showTime();
 getName();
 getFocus();
-setBgGreet();
+// setBgGreet();
 
 
 // function setBgImage() {
