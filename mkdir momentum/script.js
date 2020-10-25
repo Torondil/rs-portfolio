@@ -71,7 +71,7 @@ function getFocus() {
 function setFocus(e) {
   if (e.type === 'keypress' && (e.which == 13 || e.keyCode == 13)) {
     focus.blur();
-    if (name.innerHTML !== '') {
+    if (focus.innerHTML !== '') {
       localStorage.setItem('focus', e.target.innerHTML);
     }
   } else {
@@ -141,8 +141,6 @@ async function getQuote() {
   const res = await fetch(url);
   const data = await res.json();
   var quoteRandom = data.quotes[Math.floor(Math.random()*data.quotes.length)];
-  // items[Math.floor(Math.random()*items.length)]
-  console.log(quoteRandom.author);
   blockquote.textContent = quoteRandom.quote;
   figcaption.textContent = quoteRandom.author;
 }
@@ -189,22 +187,47 @@ getName();
 getFocus();
 setBgGreet();
 
+// Weather
 
-// function setBgImage() {
-//   внутри условие поменять картинку когда
-//   if (min == 00 && sec == 00) {
-//       if (hour < 12 && 06 < hour) {
-//   и так далее
-//   вызывается getImage(baseMorning, imagesMorning, 1); это метод поменять картинку
-//   }
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const city = document.querySelector('.city');
 
-//   сам же метод setBgImage() вызывается отдельно в самом низу
-// async function getQuote() {
-//   const url = "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json";
-//   const res = await fetch(url);
-//   console.log('res', res)
-//   const data = await res.json();
-//   console.log('data', data)
-// }
+async function getWeather() {
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=1813d6676e7a9fc29828aa2fea87886b&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json();
 
-// document.addEventListener('DOMContentLoaded', getQuote);
+    weatherIcon.className = 'weather-icon owf';
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+  } catch(err) {
+    alert('Метеорологических данных по такому городу нет!');
+  }
+}
+
+function setCity(event) {
+  if (event.code === 'Enter') {
+    getWeather();
+    city.blur();
+    localStorage.setItem('city', event.target.innerHTML)
+  }
+}
+
+document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener('keypress', setCity);
+city.addEventListener('click', () => city.innerHTML = '')
+
+function getCity() {
+  if (localStorage.getItem('city') === null) {
+    city.innerHTML = 'Минск';
+    localStorage.сity = 'Минск';
+  } else {
+    city.innerHTML = localStorage.getItem('city');
+  }
+}
+
+getCity();
