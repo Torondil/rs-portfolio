@@ -17,6 +17,9 @@ function showTime() {
   date.innerHTML = `${dayOfWeek}, ${dateNumber} ${monthList[month]}`;
   time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(second)}`;
   setTimeout(showTime, 1000);
+  if (min == 00 && second == 00) {
+    getImage();
+  }
 }
 
 function addZero(n) {
@@ -81,17 +84,19 @@ function setFocus(e) {
   }
 }
 
-const baseDay = './assets/images/day',
-  baseEvening = './assets/images/evening',
-  baseMorning = './assets/images/morning',
-  baseNight = './assets/images/night';
+const baseDay = './assets/images/day/',
+  baseEvening = './assets/images/evening/',
+  baseMorning = './assets/images/morning/',
+  baseNight = './assets/images/night/';
 
-const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
-let i = 0;
+const images = ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
+let i = 1;
+let j = 1;
 
 function viewBgImage(data) {
   const body = document.querySelector('body');
   const src = data;
+  console.log(src);
   const img = document.createElement('img');
   img.src = src;
   img.onload = () => {
@@ -100,42 +105,73 @@ function viewBgImage(data) {
 }
 
 function getImage() {
+  let today = new Date();
+  hour = today.getHours();
+  if (6 <= hour && hour <= 12) {
+    // Morning
+    var a = baseMorning;
+  } else if (12 <= hour && hour <= 18) {
+    // Day
+    var a = baseDay;
+  } else if (18 <= hour && hour <= 24) {
+    // Evening
+    var a = baseEvening;
+  } else {
+    // Night
+    var a = baseNight;
+  }
   const index = i % images.length;
-  // let today = new Date
-  // if (12 >= hour >= 6)
-  const imageSrc = base + images[index];
+  const imageSrc = a + images[index];
   viewBgImage(imageSrc);
   i++;
   btn.disabled = true;
+  console.log(today);
   setTimeout(function() { btn.disabled = false }, 1000);
 }
 
 const btn = document.querySelector('.btn');
 btn.addEventListener('click', getImage);
 
-// // Set Background and Greeting
-// function setBgGreet() {
-//   let today = new Date(),
-//     hour = today.getHours();
+// Цитата
 
-//   if (hour < 12) {
-//     // Morning
-//     document.body.style.backgroundImage =
-//       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-//     greeting.textContent = 'Good Morning, ';
-//   } else if (hour < 18) {
-//     // Afternoon
-//     document.body.style.backgroundImage =
-//       "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-//     greeting.textContent = 'Good Afternoon, ';
-//   } else {
-//     // Evening
-//     document.body.style.backgroundImage =
-//       "url('https://i.ibb.co/924T2Wv/night.jpg')";
-//     greeting.textContent = 'Good Evening, ';
-//     document.body.style.color = 'white';
-//   }
-// }
+async function getQuote() {
+  const url = "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json";
+  const res = await fetch(url);
+  console.log('res', res)
+  const data = await res.json();
+  console.log('data', data)
+}
+
+document.addEventListener('DOMContentLoaded', getQuote);
+btn.addEventListener('click', getQuote);
+
+// Set Background and Greeting
+function setBgGreet() {
+  let today = new Date(),
+  hour = today.getHours();
+
+  if (6 <= hour && hour <= 12) {
+    // Morning
+    document.body.style.backgroundImage =
+      "url('./assets/images/morning/01.jpg')";
+    greeting.textContent = 'Good Morning, ';
+  } else if (12 <= hour && hour <= 18) {
+    // Day
+    document.body.style.backgroundImage =
+      "url('./assets/images/day/01.jpg')";
+    greeting.textContent = 'Good Day, ';
+  } else if (18 <= hour && hour <= 24) {
+    // Evening
+    document.body.style.backgroundImage =
+      "url('./assets/images/evening/01.jpg')";
+    greeting.textContent = 'Good Evening, ';
+  } else {
+    // Night
+    document.body.style.backgroundImage =
+      "url('./assets/images/night/01.jpg')";
+    greeting.textContent = 'Good Night, ';
+  }
+}
 
 name.addEventListener('click', deleteName);
 name.addEventListener('keypress', setName);
@@ -146,7 +182,7 @@ focus.addEventListener('blur', setFocus);
 showTime();
 getName();
 getFocus();
-// setBgGreet();
+setBgGreet();
 
 
 // function setBgImage() {
