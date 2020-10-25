@@ -138,3 +138,10 @@ h2 {
     font-size: 5rem;
   }
 }
+
+@media (max-width: 1230px) {
+  .weather {
+    margin-top: 22rem;
+    position: relative;
+  }
+}
