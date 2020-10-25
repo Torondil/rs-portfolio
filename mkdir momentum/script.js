@@ -133,13 +133,18 @@ const btn = document.querySelector('.btn');
 btn.addEventListener('click', getImage);
 
 // Цитата
+const blockquote = document.querySelector('blockquote');
+const figcaption = document.querySelector('figcaption');
 
 async function getQuote() {
   const url = "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json";
   const res = await fetch(url);
-  console.log('res', res)
   const data = await res.json();
-  console.log('data', data)
+  var quoteRandom = data.quotes[Math.floor(Math.random()*data.quotes.length)];
+  // items[Math.floor(Math.random()*items.length)]
+  console.log(quoteRandom.author);
+  blockquote.textContent = quoteRandom.quote;
+  figcaption.textContent = quoteRandom.author;
 }
 
 document.addEventListener('DOMContentLoaded', getQuote);
