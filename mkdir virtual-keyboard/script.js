@@ -23,7 +23,7 @@ const Keyboard = {
     // Setup main elements
     this.elements.main.classList.add("keyboard", "keyboard--hidden");
     this.elements.keysContainer.classList.add("keyboard__keys");
-    this.elements.keysContainer.appendChild(this._createKeys());
+    this.elements.keysContainer.appendChild(this.createKeys());
 
     this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
 
@@ -41,219 +41,14 @@ const Keyboard = {
     });
   },
 
-  _createKeys() {
+  createKeys() {
     const fragment = document.createDocumentFragment();
-    const keyLayout = [
+    var keyLayout = [
       "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]",
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
       "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "up",
       "shift", "ru/en", "space", "voice", "left", "down", "right"
-    ];
-
-    const keyArrId = [
-      [
-        {
-          code: 'Backquote', en: '`', EN: '~', ru: 'ё', RU: 'Ё', letterEn: 0, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'Digit1', en: '1', EN: '!', ru: '1', RU: '!', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit2', en: '2', EN: '@', ru: '2', RU: '"', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit3', en: '3', EN: '#', ru: '3', RU: '№', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit4', en: '4', EN: '$', ru: '4', RU: ';', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit5', en: '5', EN: '%', ru: '5', RU: '%', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit6', en: '6', EN: '^', ru: '6', RU: ':', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit7', en: '7', EN: '&', ru: '7', RU: '?', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit8', en: '8', EN: '*', ru: '8', RU: '*', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit9', en: '9', EN: '(', ru: '9', RU: '(', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Digit0', en: '0', EN: ')', ru: '0', RU: ')', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Minus', en: '-', EN: '_', ru: '-', RU: '_', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Equal', en: '=', EN: '+', ru: '=', RU: '+', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Backspace', en: 'Backspace', EN: 'Backspace', ru: 'Backspace', RU: 'Backspace', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-      ],
-      [
-        {
-          code: 'Tab', en: 'Tab', EN: 'Tab', ru: 'Tab', RU: 'Tab', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'KeyQ', en: 'q', EN: 'Q', ru: 'й', RU: 'Й', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyW', en: 'w', EN: 'W', ru: 'ц', RU: 'Ц', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyE', en: 'e', EN: 'E', ru: 'у', RU: 'У', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyR', en: 'r', EN: 'R', ru: 'к', RU: 'К', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyT', en: 't', EN: 'T', ru: 'е', RU: 'Е', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyY', en: 'y', EN: 'Y', ru: 'н', RU: 'Н', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyU', en: 'u', EN: 'U', ru: 'г', RU: 'Г', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyI', en: 'i', EN: 'I', ru: 'ш', RU: 'Ш', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyO', en: 'o', EN: 'O', ru: 'щ', RU: 'Щ', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyP', en: 'p', EN: 'P', ru: 'з', RU: 'З', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'BracketLeft', en: '[', EN: '{', ru: 'х', RU: 'Х', letterEn: 0, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'BracketRight', en: ']', EN: '}', ru: 'ъ', RU: 'Ъ', letterEn: 0, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'Backslash', en: '\\', EN: '|', ru: '\\', RU: '/', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'Del', en: 'Del', EN: 'Del', ru: 'Del', RU: 'Del', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-      ],
-      [
-        {
-          code: 'CapsLock', en: 'CapsLock', EN: 'CapsLock', RU: 'CapsLock', ru: 'CapsLock', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'KeyA', en: 'a', EN: 'A', RU: 'Ф', ru: 'ф', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyS', en: 's', EN: 'S', RU: 'Ы', ru: 'ы', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyD', en: 'd', EN: 'D', RU: 'В', ru: 'в', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyF', en: 'f', EN: 'F', RU: 'А', ru: 'а', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyG', en: 'g', EN: 'G', RU: 'П', ru: 'п', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyH', en: 'h', EN: 'H', RU: 'Р', ru: 'р', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyJ', en: 'j', EN: 'J', RU: 'О', ru: 'о', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyK', en: 'k', EN: 'K', RU: 'Л', ru: 'л', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyL', en: 'l', EN: 'L', RU: 'Д', ru: 'д', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'Semicolon', en: ';', EN: ':', RU: 'Ж', ru: 'ж', letterEn: 0, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'Quote', en: "'", EN: '"', RU: 'Э', ru: 'э', letterEn: 0, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'Enter', en: 'Enter', EN: 'Enter', RU: 'Enter', ru: 'Enter', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-      ],
-      [
-        {
-          code: 'ShiftLeft', en: 'Shift', EN: 'Shift', RU: 'Shift', ru: 'Shift', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'KeyZ', en: 'z', EN: 'Z', RU: 'Я', ru: 'я', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyX', en: 'x', EN: 'X', RU: 'Ч', ru: 'ч', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyC', en: 'c', EN: 'C', RU: 'С', ru: 'с', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyV', en: 'v', EN: 'V', RU: 'М', ru: 'м', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyB', en: 'b', EN: 'B', RU: 'И', ru: 'и', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyN', en: 'n', EN: 'N', RU: 'Т', ru: 'т', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'KeyM', en: 'm', EN: 'M', RU: 'Ь', ru: 'ь', letterEn: 1, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'Comma', en: ',', EN: '<', RU: 'Б', ru: 'б', letterEn: 0, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'Period', en: '.', EN: '>', RU: 'Ю', ru: 'ю', letterEn: 0, letterRu: 1, activeKey: 0,
-        },
-        {
-          code: 'Slash', en: '/', EN: '?', RU: '.', ru: ',', letterEn: 0, letterRu: 0, activeKey: 0,
-        },
-        {
-          code: 'ArrowUp', en: '↑', EN: '↑', RU: '↑', ru: '↑', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'ShiftRight', en: 'Shift', EN: 'Shift', RU: 'Shift', ru: 'Shift', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-      ],
-      [
-        {
-          code: 'ControlLeft', en: 'Ctrl', EN: 'Ctrl', RU: 'Ctrl', ru: 'Ctrl', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'MetaLeft', en: 'Win', EN: 'Win', RU: 'Win', ru: 'Win', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'AltLeft', en: 'Alt', EN: 'Alt', RU: 'Alt', ru: 'Alt', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'Space', en: ' ', EN: ' ', RU: ' ', ru: ' ', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'AltRight', en: 'alt', EN: 'alt', RU: 'alt', ru: 'alt', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'ArrowLeft', en: '←', EN: '←', RU: '←', ru: '←', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'ArrowDown', en: '↓', EN: '↓', RU: '↓', ru: '↓', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'ArrowRight', en: '→', EN: '→', RU: '→', ru: '→', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-        {
-          code: 'ControlRight', en: 'Ctrl', EN: 'Ctrl', RU: 'Ctrl', ru: 'Ctrl', letterEn: 0, letterRu: 0, activeKey: 1,
-        },
-      ],
     ];
 
     // Creates HTML for an icon
@@ -268,6 +63,7 @@ const Keyboard = {
       // Add attributes/classes
       keyElement.setAttribute("type", "button");
       keyElement.classList.add("keyboard__key");
+      keyElement.setAttribute("data-key", "76")
 
       switch (key) {
         case "backspace":
@@ -277,6 +73,9 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
             this._triggerEvent("oninput");
+            const audio = document.querySelector(`audio[data-key="68"]`);
+            audio.currentTime = 0;
+            audio.play();
           });
 
           break;
@@ -288,6 +87,9 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this._toggleCapsLock();
             keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+            const audio = document.querySelector(`audio[data-key="75"]`);
+            audio.currentTime = 0;
+            audio.play();
           });
 
           break;
@@ -299,6 +101,9 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this._toggleCapsLock ();
             keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+            const audio = document.querySelector(`audio[data-key="74"]`);
+            audio.currentTime = 0;
+            audio.play();
           });
 
           break;
@@ -308,8 +113,10 @@ const Keyboard = {
             keyElement.innerHTML = createIconHTML("keyboard_voice");
 
             keyElement.addEventListener("click", () => {
-              this._toggleCapsLock ();
               keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+              const audio = document.querySelector(`audio[data-key="76"]`);
+              audio.currentTime = 0;
+              audio.play();
             });
 
           break;
@@ -318,8 +125,10 @@ const Keyboard = {
             keyElement.innerHTML = createIconHTML("keyboard_arrow_up");
 
             keyElement.addEventListener("click", () => {
-              this._toggleCapsLock ();
               keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+              const audio = document.querySelector(`audio[data-key="76"]`);
+              audio.currentTime = 0;
+              audio.play();
             });
 
           break;
@@ -328,8 +137,10 @@ const Keyboard = {
             keyElement.innerHTML = createIconHTML("keyboard_arrow_down");
 
             keyElement.addEventListener("click", () => {
-              this._toggleCapsLock ();
               keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+              const audio = document.querySelector(`audio[data-key="76"]`);
+              audio.currentTime = 0;
+              audio.play();
             });
 
           break;
@@ -338,8 +149,14 @@ const Keyboard = {
             keyElement.innerHTML = createIconHTML("keyboard_arrow_left");
 
             keyElement.addEventListener("click", () => {
-              this._toggleCapsLock ();
-              keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+
+              keyElement.onclick = () => {
+                document.querySelector(".use-keyboard-input").setRangeText("", document.querySelector(".use-keyboard-input").selectionStart-1,  document.querySelector(".use-keyboard-input").selectionEnd, "end");
+                document.querySelector(".use-keyboard-input").focus();
+                const audio = document.querySelector(`audio[data-key="76"]`);
+                audio.currentTime = 0;
+                audio.play();
+              };
             });
 
           break;
@@ -348,8 +165,11 @@ const Keyboard = {
             keyElement.innerHTML = createIconHTML("keyboard_arrow_right");
 
             keyElement.addEventListener("click", () => {
-              this._toggleCapsLock ();
-              keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+              this.properties.value += " ";
+              this._triggerEvent("oninput");
+              const audio = document.querySelector(`audio[data-key="76"]`);
+              audio.currentTime = 0;
+              audio.play();
             });
 
           break;
@@ -361,6 +181,9 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this.properties.value += "\n";
             this._triggerEvent("oninput");
+            const audio = document.querySelector(`audio[data-key="71"]`);
+            audio.currentTime = 0;
+            audio.play();
           });
 
           break;
@@ -372,12 +195,15 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this.properties.value += " ";
             this._triggerEvent("oninput");
+            const audio = document.querySelector(`audio[data-key="76"]`);
+            audio.currentTime = 0;
+            audio.play();
           });
 
           break;
 
         case "done":
-          keyElement.classList.add("keyboard__key--dark");
+          keyElement.classList.add("keyboard__key--dark", "keyboard__key--wide");
           keyElement.innerHTML = createIconHTML("check_circle");
 
           keyElement.addEventListener("click", () => {
@@ -387,15 +213,45 @@ const Keyboard = {
 
           break;
 
+        case "ru/en":
+          keyElement.classList.add("keyboard__key--wide");
+
+          keyElement.classList.add("ruEn");
+
+          keyElement.innerHTML = "ru/en";
+
+
+          keyElement.addEventListener("click", () => {
+            keyLayout = [
+              "роп1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
+              "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]",
+              "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
+              "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "up",
+              "shift", "ru/en", "space", "voice", "left", "down", "right"
+            ];
+
+            console.log(keyLayout);
+            const audio = document.querySelector(`audio[data-key="76"]`);
+            audio.currentTime = 0;
+            audio.play();
+
+          });
+          break;
+
+
         default:
           keyElement.textContent = key.toLowerCase();
 
           keyElement.addEventListener("click", () => {
             this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
             this._triggerEvent("oninput");
+            const audio = document.querySelector(`audio[data-key="76"]`);
+            audio.currentTime = 0;
+            audio.play();
           });
 
           break;
+
       }
 
       fragment.appendChild(keyElement);
@@ -411,6 +267,7 @@ const Keyboard = {
   _triggerEvent(handlerName) {
     if (typeof this.eventHandlers[handlerName] == "function") {
       this.eventHandlers[handlerName](this.properties.value);
+      document.querySelector(".use-keyboard-input").focus();
     }
   },
 

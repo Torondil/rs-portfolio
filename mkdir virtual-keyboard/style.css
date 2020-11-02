@@ -80,3 +80,28 @@
 .keyboard__key--dark {
   background: rgba(0, 0, 0, 0.25);
 }
+
+@media (max-width: 500px) {
+
+  .keyboard__key {
+    height: 28px;
+    width: 26px;
+    max-width: 70px;
+    font-size: 14px;
+  }
+
+  .keyboard__key--wide {
+    width: 12%;
+  }
+
+  .keyboard__key--extra-wide {
+    width: 36%;
+    max-width: 460px;
+  }
+
+  .keyboard__key--activatable::after {
+    top: 5px;
+    right: 5px;
+  }
+
+}
