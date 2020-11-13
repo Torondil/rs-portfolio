@@ -32,9 +32,67 @@ const field = document.querySelector('.field');
 const playBtn = document.querySelector('.play');
 const cellSize = 80;
 const empty = {
+  value: 0,
   top: 0,
   left: 0,
 };
+
+let sec = 0;
+let min = 0;
+function tick() {
+  sec += 1;
+  document.getElementById('timer')
+    .innerHTML = `Time: ${min}:${sec}`;
+
+  if (sec === 60) {
+    document.getElementById('timer')
+      .innerHTML = `Time: ${min}:00`;
+    min += 1;
+    sec = 0;
+  }
+  if (sec < 10) {
+    document.getElementById('timer')
+      .innerHTML = `Time: ${min}:0${sec}`;
+  }
+
+  if (min < 10) {
+    document.getElementById('timer')
+      .innerHTML = `Time: 0${min}:${sec}`;
+  }
+
+  if (sec < 10 && min < 10) {
+    document.getElementById('timer')
+      .innerHTML = `Time: 0${min}:0${sec}`;
+  }
+}
+
+function init() {
+  setInterval(tick, 1000);
+}
+
+document.body.addEventListener('onload', init());
+
+const audio = document.createElement('audio');
+audio.id = 'audio';
+audio.innerHTML = '<source src="../dist/assets/sfx-13.mp3" type="audio/mpeg" preload="auto">';
+document.body.appendChild(audio);
+
+function fPlay() {
+  audio.currentTime = 0;
+  audio.play();
+}
+
+const restart = document.createElement('audio');
+restart.id = 'audio';
+restart.innerHTML = '<source src="../dist/assets/iren.mp3" type="audio/mpeg" preload="auto">';
+document.body.appendChild(restart);
+
+function restartPlay() {
+  restart.currentTime = 0;
+  restart.play();
+}
+
+timerHTML.addEventListener('click', () => { restartPlay(); });
 
 const cells = [];
 cells.push(empty);
@@ -58,7 +116,14 @@ function move(index) {
   cell.left = emptyLeft;
   cell.top = emptyTop;
   count += 1;
+  fPlay();
   movesHTML.innerHTML = `Moves: ${count}`;
+  // eslint-disable-next-line no-shadow
+  const isFinished = cells.every((cell) => cell.value === cell.top * 4 + cell.left);
+  if (isFinished) {
+    alert(`Ура! Вы решили головоломку за ${document.getElementById('timer')
+      .innerHTML.substring(6, 11)} и ${movesHTML.innerHTML.substring(7, 10)} ходов`);
+  }
 }
 
 function start() {
@@ -67,13 +132,15 @@ function start() {
 
   for (let i = 1; i <= 15; i += 1) {
     const cell = document.createElement('div');
+    const value = numbers[i - 1] + 1;
     cell.className = 'cell';
-    cell.innerHTML = numbers[i - 1] + 1;
+    cell.innerHTML = value;
 
     const left = i % 4;
     const top = (i - left) / 4;
 
     cells.push({
+      value,
       left,
       top,
       element: cell,
@@ -92,6 +159,9 @@ function start() {
 start();
 
 playBtn.addEventListener('click', () => {
+  min = 0;
+  sec = 0;
+  timerHTML.innerHTML = 'Time: 00:00';
   cells.length = 0;
   cells.push(empty);
   cells[0].left = 0;
