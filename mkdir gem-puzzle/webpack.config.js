@@ -14,10 +14,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
-    inline: true,
-    hot: true,
     open: true,
-    liveReload: false,
   },
   module: {
     rules: [

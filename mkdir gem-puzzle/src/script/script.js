@@ -1,6 +1,4 @@
 import '../styles/style.css';
-import '../styles/font.css';
-
 import '../index.html';
 
 const containerHTML = document.createElement('div');
@@ -41,28 +39,23 @@ let sec = 0;
 let min = 0;
 function tick() {
   sec += 1;
-  document.getElementById('timer')
-    .innerHTML = `Time: ${min}:${sec}`;
+  timerHTML.innerHTML = `Time: ${min}:${sec}`;
 
   if (sec === 60) {
-    document.getElementById('timer')
-      .innerHTML = `Time: ${min}:00`;
+    timerHTML.innerHTML = `Time: ${min}:00`;
     min += 1;
     sec = 0;
   }
   if (sec < 10) {
-    document.getElementById('timer')
-      .innerHTML = `Time: ${min}:0${sec}`;
+    timerHTML.innerHTML = `Time: ${min}:0${sec}`;
   }
 
   if (min < 10) {
-    document.getElementById('timer')
-      .innerHTML = `Time: 0${min}:${sec}`;
+    timerHTML.innerHTML = `Time: 0${min}:${sec}`;
   }
 
   if (sec < 10 && min < 10) {
-    document.getElementById('timer')
-      .innerHTML = `Time: 0${min}:0${sec}`;
+    timerHTML.innerHTML = `Time: 0${min}:0${sec}`;
   }
 }
 
@@ -81,18 +74,6 @@ function fPlay() {
   audio.currentTime = 0;
   audio.play();
 }
-
-const restart = document.createElement('audio');
-restart.id = 'audio';
-restart.innerHTML = '<source src="../dist/assets/iren.mp3" type="audio/mpeg" preload="auto">';
-document.body.appendChild(restart);
-
-function restartPlay() {
-  restart.currentTime = 0;
-  restart.play();
-}
-
-timerHTML.addEventListener('click', () => { restartPlay(); });
 
 const cells = [];
 cells.push(empty);
