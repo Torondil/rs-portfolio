@@ -31,11 +31,14 @@ function renderCards(container, arrCards) {
     cardWrapper.classList.add('cardWrapper');
     cardWrapper.setAttribute('id', `${card.name}`);
     cardWrapper.insertAdjacentHTML('afterbegin', `<div class="cardWrapper__element" style="background-image: url(${card.image})"></div>`);
-    const cardWrapperText = document.createElement('div');
+    const cardWrapperTextContainer = document.createElement('div');
+    const cardWrapperText = document.createElement('p');
+    cardWrapperText.classList.add('cardWrapper__text');
     cardWrapperText.textContent = (`${card.name}`);
-    cardWrapperText.classList.add('cardWrapper__title');
+    cardWrapperTextContainer.classList.add('cardWrapper__title');
     container.append(cardWrapper);
-    cardWrapper.append(cardWrapperText);
+    cardWrapper.append(cardWrapperTextContainer);
+    cardWrapperTextContainer.append(cardWrapperText);
   });
 }
 
@@ -44,11 +47,38 @@ function roundCardRender() {
   containerCard.forEach((el) => {
     const roundCardContainer = document.createElement('div');
     roundCardContainer.classList.add('cardWrapper__roundCard');
-    roundCardContainer.insertAdjacentHTML('afterbegin', '<img src="./assets/img/177c249.arrows.png" alt="arrows">');
+    roundCardContainer.insertAdjacentHTML('afterbegin', '<img src="./assets/img/5313167.arrows.png" alt="arrows">');
     el.append(roundCardContainer);
+
     roundCardContainer.onclick = (event) => {
       const cardWrapper = event.target.closest('.cardWrapper');
-      cardWrapper.classList.toggle('transform');
+      const cardTextTitle = event.target.closest('.cardWrapper__title');
+      const cardText = cardTextTitle.firstChild;
+      const cardCategory = event.target.closest('.container_categories').id;
+      const cardCategoryArr = cards[`${cardCategory}`];
+      const wordRu = cardCategoryArr.find((c) => c.name === cardText.textContent).translation;
+      const wordEn = cardText.textContent;
+      cardText.textContent = '';
+      roundCardContainer.classList.add('hidden');
+      setTimeout(() => {
+        cardText.innerHTML = wordRu;
+      }, 200);
+      cardWrapper.classList.add('transform');
+      cardText.classList.add('transformNow');
+      if (cardWrapper.classList.contains('transform')) {
+        console.log(cardWrapper.classList.contains('transform'));
+      }
+      setTimeout(() => {
+        cardWrapper.addEventListener('mouseleave', () => {
+          cardText.textContent = '';
+          cardWrapper.classList.remove('transform');
+          setTimeout(() => {
+            cardText.innerHTML = wordEn;
+            roundCardContainer.classList.remove('hidden');
+          }, 200);
+          cardText.classList.remove('transformNow');
+        }, { once: true });
+      }, 500);
     };
   });
 }

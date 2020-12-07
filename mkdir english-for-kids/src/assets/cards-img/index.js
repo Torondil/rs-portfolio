@@ -69,10 +69,12 @@ import train from './train.jpg';
 import sun from './sun.jpg';
 import house from './house.jpg';
 import outdoors from './outdoors.jpg';
+import arrows from './arrows.png';
 
 
 export {
   angry,
+  arrows,
   bird,
   blouse,
   boot,
