@@ -7,8 +7,11 @@ const content = document.querySelector('.content');
 const wrapper = document.querySelector('.wrapper');
 const openPage = content.firstChild.nextElementSibling;
 const categoryName = document.createElement('div');
-// const isMain = true;
-// const isPlay = false;
+
+document.querySelector('.c-hamburger').addEventListener('click', function active(e) {
+  e.preventDefault();
+  this.classList.toggle('is-active');
+});
 
 menuBtn.addEventListener('click', (event) => {
   event.stopPropagation();
@@ -49,6 +52,22 @@ function roundCardRender() {
     roundCardContainer.classList.add('cardWrapper__roundCard');
     roundCardContainer.insertAdjacentHTML('afterbegin', '<img src="./assets/img/5313167.arrows.png" alt="arrows">');
     el.append(roundCardContainer);
+    const audioArr = cards[`${el.closest('.container_categories').id}`];
+    const audio = document.createElement('audio');
+    const audioLink = audioArr.find((elem) => elem.name === el.parentNode.id).audioSrc;
+
+    audio.innerHTML = `<source src="${audioLink}" type="audio/mpeg" preload="auto">`;
+    el.parentNode.appendChild(audio);
+
+    function fPlay() {
+      audio.currentTime = 0;
+      audio.play();
+    }
+
+    const audioEl = el.parentNode;
+    audioEl.onclick = () => {
+      fPlay();
+    };
 
     roundCardContainer.onclick = (event) => {
       const cardWrapper = event.target.closest('.cardWrapper');
@@ -59,15 +78,13 @@ function roundCardRender() {
       const wordRu = cardCategoryArr.find((c) => c.name === cardText.textContent).translation;
       const wordEn = cardText.textContent;
       cardText.textContent = '';
+      event.stopPropagation();
       roundCardContainer.classList.add('hidden');
       setTimeout(() => {
         cardText.innerHTML = wordRu;
       }, 200);
       cardWrapper.classList.add('transform');
       cardText.classList.add('transformNow');
-      if (cardWrapper.classList.contains('transform')) {
-        console.log(cardWrapper.classList.contains('transform'));
-      }
       setTimeout(() => {
         cardWrapper.addEventListener('mouseleave', () => {
           cardText.textContent = '';
@@ -118,3 +135,43 @@ menu.onclick = (event) => {
 };
 
 renderCards(category, cards.categories);
+
+function isPlayRender() {
+  const cardWrapper = document.querySelectorAll('.cardWrapper');
+  const cardWrapperEl = document.querySelectorAll('.cardWrapper__element');
+  if (content.firstChild.nextElementSibling.id === 'category') {
+    cardWrapper.forEach((el) => {
+      el.classList.add('cardWrapperMain');
+    });
+    cardWrapperEl.forEach((el) => {
+      el.classList.add('cardWrapperMainEl');
+    });
+  }
+
+  const switcherState = document.querySelector('.switch-container');
+
+  switcherState.onclick = (e) => {
+    if (e.target.dataset.on === 'train') {
+      cardWrapper.forEach((el) => {
+        el.classList.add('cardWrapperMainPlay');
+      });
+      if (document.querySelector('.container_categories')) {
+        const cardWrapperTitle = document.querySelectorAll('.cardWrapper__title');
+        const cardEl = document.querySelectorAll('.cardWrapper__element');
+        cardWrapperTitle.forEach((el) => {
+          el.classList.toggle('hidden');
+        });
+        cardEl.forEach((el) => {
+          el.classList.toggle('cardWrapper__elementPlay');
+        });
+      }
+      e.target.dataset.on = 'play';
+    } else {
+      cardWrapper.forEach((el) => {
+        el.classList.toggle('cardWrapperMainPlay');
+      });
+      e.target.dataset.on = 'train';
+    }
+  };
+}
+isPlayRender();

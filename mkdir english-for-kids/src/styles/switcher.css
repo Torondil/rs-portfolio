@@ -53,7 +53,7 @@
 }
 
 .switch-label:before {
-  content: attr(data-off);
+  content: attr(data-on);
   right: 15px;
   color: #fff;
   text-shadow: 0 1px hsla(0,0%,100%,.5)

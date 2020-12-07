@@ -1,4 +1,5 @@
 @import url('./switcher.css');
+@import url('./menu_button.css');
 
 * {
   margin: 0;
@@ -28,6 +29,22 @@ header {
   transition: all 0.5s ease-out;
 }
 
+.cardWrapperMain {
+  background: linear-gradient(to bottom, #285977 45%, transparent 50%);
+}
+
+.cardWrapperMainPlay {
+  background: linear-gradient(to bottom, #e2a41d 45%, transparent 50%);
+}
+
+.cardWrapperMainEl {
+  height: 60% !important;
+  border-radius: 50% !important;
+  width: 60%;
+  margin: 9% auto;
+  background-size: 150%;
+}
+
 .transform {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
@@ -40,7 +57,7 @@ header {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .visible {
@@ -56,6 +73,11 @@ header {
   height: 85%;
   background-position: center;
   border-radius: 5px;
+}
+
+.cardWrapper__elementPlay {
+  height: 100%;
+  background-size: cover;
 }
 
 .cardWrapper__title {
@@ -124,12 +146,10 @@ header {
 }
 
 .menu-btn {
-  width: 30px;
-  height: 30px;
-  background-color: #333;
   position: absolute;
-  right: -35px;
+  right: -51px;
   top: 10px;
+  border-radius: 2px;
 }
 
 .content {
