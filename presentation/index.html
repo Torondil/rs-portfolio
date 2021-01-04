@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/league.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<span>What is</span>
+					<h1 class="first__express">PostgreSQL?</h1>
+				</section>
+				<section>
+					<img src="./assets/postgres.jpg" alt="SQL">
+						<p>PostgreSQL is an open source object-relational database management system (ORDBMS) with an emphasis on extensibility and standards compliance </p>
+				</section>
+				<section><h2>Why PostgreSQL?</h2></section>
+				<section>
+					<img src="./assets/PostgreSQL.png" alt="PostgreSQL">
+				</section>
+				<section>
+					<section><h1>Data model</h1></section>
+					<section data-transition="convex">
+						<h2>Object-relational Database</h2>
+						<ul>Is support for:
+							<li>custom objects and their behavior</li>
+							<li>including data types</li>
+							<li>functions</li>
+							<li>operations</li>
+							<li>domains</li>
+							<li>indexes</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section><h2>Structures and data types</h2></section>
+					<section data-transition="convex">
+						<ul>
+							<li>uuid</li>
+							<li>monetary</li>
+							<li>enumerable</li>
+							<li>geometric</li>
+							<li>binary</li>
+							<li>network addresses</li>
+							<li>bit strings</li>
+							<li>text search</li>
+							<li>xml</li>
+							<li>json</li>
+							<li>arrays</li>
+							<li>composite types and ranges</li>
+							<li>some internal types</li>
+						</ul>
+					</section>
+					<section data-transition="convex">
+						<h2>Network addresses</h2>
+						<ul>
+							<li>192.168.100.128/25</li>
+							<li>10.1.2.3/32</li>
+							<li>2001: 4f8: 3: ba: 2e0: 81ff: ​​fe22: d1f1 / 128</li>
+							<li>:: ffff: 1.2.3.0/128</li>
+						</ul>
+					</section>
+					<section data-transition="convex">
+						<h2>Multidimensional arrays</h2>
+						<pre><code data-trim data-noescape data-line-numbers="1-6|7-15">
+							CREATE TABLE holiday_picnic (
+								holiday varchar(50) -- string
+								sandwich text[], -- array
+								side text[] [], -- multidimensional array
+								beverage text ARRAY[4] -- array of 4 elements
+							);
+							INSERT INTO holiday_picnic VALUES
+								('Labor Day',
+								'{"roast beef","veggie","turkey"}',
+								'{
+									{"potato salad","green salad"},
+									{"chips","crackers"}
+								}',
+								'{"soda","juice","beer","water"}'
+								);
+						</code></pre>
+					</section>
+					<section data-transition="convex">
+						<h2>Geometric data</h2>
+						<pre><code data-trim data-noescape>
+							CREATE TABLE trails ( -- create a table for storing trails
+									 trail_name varchar(250),
+									 trail_path path
+							);
+						</code></pre>
+					</section>
+					<section data-transition="convex">
+						<pre><code data-trim data-noescape>
+							// insert the path into the table,
+						 INSERT INTO trails VALUES
+									('Dool Trail - Creeping Forest Trail Loop',
+									((37.172,-122.22261666667),
+									(37.171616666667,-122.22385),
+									(37.1735,-122.2236),
+									(37.175416666667,-122.223),
+									(37.1758,-122.22378333333),
+									(37.179466666667,-122.22866666667),
+									(37.18395,-122.22675),
+									(37.180783333333,-122.22466666667),
+									(37.176116666667,-122.2222),
+									(37.1753,-122.22293333333),
+									(37.173116666667,-122.22281666667)));
+						</code></pre>
+					</section>
+					<section data-transition="convex">
+						<h2>JSON support</h2>
+						<ul>Getting a bit more useful:
+							<li>Postgres introduces the ->, ->>, #>, and #>> operators.</li>
+							<li>This allows us to actually start querying against our JSON data! </li>
+						</ul>
+						<pre><code data-trim data-noescape>
+						-- returns the value of doc.property1 as JSON
+						SELECT doc -> 'property1' FROM SOME_TABLE;
+						-- returns the value of doc.property1 as text
+						SELECT doc ->> 'property1' FROM SOME_TABLE;
+						-- returns the value of doc.property2.subproperty as JSON
+						SELECT doc #> '{property2,subproperty}' FROM SOME_TABLE;
+						-- returns the value of doc.property2.subproperty as text
+						SELECT doc #>> '{property2,subproperty}' FROM SOME_TABLE;
+					</code></pre>
+					</section>
+					<section data-transition="convex">
+						<h2>Creating a new type</h2>
+						<pre><code data-trim data-noescape data-line-numbers="1-6|8-12">
+							-- creating a new composite "wine"
+							CREATE TYPE wine AS (
+									 wine_vineyard varchar(50),
+									 wine_type varchar(50),
+									 wine_year int
+							);
+
+							 -- create a table that uses a compositetype "wine"
+							CREATE TABLE pairings (
+									 menu_entree varchar(50),
+									 wine_pairing wine
+							);
+						</code></pre>
+					</section>
+					<section data-transition="convex">
+						<pre><code data-trim data-noescape data-line-numbers="1-5|6-13">
+							-- insert data into the table using the ROW expression
+							INSERT INTO pairings VALUES
+								('Lobster Tail',ROW('Stag Leap','Chardonnay', 2012)),
+								('Elk Medallions',ROW('Rombauer','Sauvignon',2012));
+
+							/*
+								fetch from a table using the column name
+								(use parentheses separated by dot from field name
+								in a composite type)
+							*/
+							SELECT (wine_pairing).wine_vineyard, (wine_pairing).wine_type
+							FROM pairings
+							WHERE menu_entree = 'Elk Medallions';
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<h2>Data sizes</h2>
+					<ul>
+						<li>Maximum database size: Is not limited</li>
+						<li>Maximum table size: 32 TB</li>
+						<li>Maximum row size: 1.6 TB</li>
+						<li>Maximum field size: 1 GB</li>
+						<li>Maximum number of rows in a table: Not limited</li>
+						<li>Maximum number of columns in a table: 250-1600 depending on column type</li>
+						<li>Maximum number of indexes in a table: Not limited</li>
+					</ul>
+				</section>
+				<section>
+					<section><h1>Data integrity</h1></section>
+					<section data-transition="convex">
+						<h2>ANSI-SQL:2008</h2>
+						<h2>ACID</h2>
+						<ul>
+							<li><strong>A</strong>tomicity</li>
+							<li><strong>C</strong>onsistency</li>
+							<li><strong>I</strong>solation</li>
+							<li><strong>D</strong>urability</li>
+						</ul>
+					</section>
+					<section data-transition="convex">
+						<h3>Valid data</h3>
+						<ul>
+							<li>primary keys</li>
+							<li>constraining and cascading foreign keys</li>
+							<li>unique constraints</li>
+							<li>NOT NULL constraints</li>
+							<li>check constraints</li>
+						</ul>
+					</section>
+				</section>
+				<section data-transition="convex"><h1>Thank you for watching!</h1></section>
+			</div>
+		</div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'c/t',
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
