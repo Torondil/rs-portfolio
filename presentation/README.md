@@ -1,2 +1,2 @@
-# srr233-JS2020Q3
-Private repository for @srr233
+# Torondil-JS2020Q3
+Private repository for @Torondil
