@@ -1,2 +1,3 @@
 # Torondil-JS2020Q3
-Private repository for @Torondil
+https://youtu.be/dHrpCLWrsDs </br>
+https://rolling-scopes-school.github.io/torondil-JS2020Q3/presentation/
