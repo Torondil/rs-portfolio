@@ -1,0 +1,90 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background: #D5CEC1;
+  background: -webkit-linear-gradient(top left, #D5CEC1, #175B5B);
+  background: -moz-linear-gradient(top left, #D5CEC1, #175B5B);
+  background: linear-gradient(to bottom right, #D5CEC1, #175B5B);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.field {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border: 1px solid black;
+}
+
+.cell {
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  background-color: #cfcfcf;
+  color: #003333;
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid #550000;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  background-color: #af6d61;
+  border-radius: 5px;
+}
+
+.footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.play {
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  width: 90px;
+  background-color: #D4EE9F;
+  color: #003333;
+  outline: none;
+  cursor: pointer;
+}
+
+.footer button:hover {
+  color: #D4EE9F;
+  background-color: #003333;
+}
+
+.footer span {
+  flex: 1;
+  text-align: center;
+  font-size: 20px;
+  color: #D4EE9F;
+  font-weight: bold;
+  margin: auto 0;
+}
+
+
+/*# sourceMappingURL=styles.css.map*/
